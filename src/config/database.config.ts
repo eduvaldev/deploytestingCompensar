@@ -5,11 +5,11 @@ import { join } from 'path';
 function typeormModuleOptions(): TypeOrmModuleOptions {
   return {
     type: 'postgres',
-    host: 'compensar.ckzx5p2ww1bg.us-east-1.rds.amazonaws.com',
+    host: process.env.HOST,
     port: 5432,
-    username: 'postgres',
-    password: 'Lokiyoo04!',
-    database: 'compensar',
+    username: process.env.USER,
+    password: process.env.PASSWORD,
+    database: process.env.DATABASE,
     entities: [join(__dirname, '../**/**/*entity{.ts,.js}')],
     autoLoadEntities: true,
     migrationsRun: true,
