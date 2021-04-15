@@ -7,7 +7,7 @@ function typeormModuleOptions(): TypeOrmModuleOptions {
     type: 'postgres',
     host: 'compensar.ckzx5p2ww1bg.us-east-1.rds.amazonaws.com',
     port: 5432,
-    username: 'postgres,
+    username: 'postgres',
     password: 'Lokiyoo04!',
     database: 'compensar',
     entities: [join(__dirname, '../**/**/*entity{.ts,.js}')],
