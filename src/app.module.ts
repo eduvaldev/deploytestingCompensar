@@ -11,6 +11,13 @@ import { TypeOrmModule, TypeOrmModuleOptions } from '@nestjs/typeorm';
 import { ApivideosModule } from './apivideos/apivideos.module';
 import { ApilikeuserModule } from './apilikeuser/apilikeuser.module';
 import { ApiuservideoModule } from './apiuservideo/apiuservideo.module';
+import { ApiPreguntasModule } from './apiPreguntas/apipreguntas.module';
+import { ApiEmailModule } from './apiEmail/apiemail.module';
+import { ApiNotificacionesModule } from './apiNotificaciones/apinotificaciones.module';
+import { ApiRetoModule } from './apiReto/apireto.module';
+import { ApiTextosModule } from './apiTextos/apiTextos.module';
+import { ApiEnlacesModule } from './apiEnlaces/apiEnlaces.module';
+import { ApiUsuariosModule } from './apiUsuarios/apiUsuarios.module';
 import databaseConfig from './config/database.config';
 import configSecret from './config/config';
 
@@ -38,6 +45,13 @@ import configSecret from './config/config';
     ApivideosModule,
     ApilikeuserModule,
     ApiuservideoModule,
+    ApiPreguntasModule,
+    ApiEmailModule,
+    ApiRetoModule,
+    ApiNotificacionesModule,
+    ApiTextosModule,
+    ApiEnlacesModule,
+    ApiUsuariosModule,
   ],
   controllers: [],
   providers: [],

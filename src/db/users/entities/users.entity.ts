@@ -10,6 +10,9 @@ import { Rols } from '../../rols/entities/rols.entity';
 import { States } from '../../states/entities/state.entity';
 import { Likeuser } from '../../likeuservideos/entities/likeuser.entity';
 import { Uservideo } from '../../uservideos/entities/uservideos.entity';
+import { Userpregunta } from '../../userpregunta/entities/userpregunta.entity';
+import {Userselectreto} from '../../userselectreto/entities/userselecreto.entity';
+import {Usernotificaciones} from '../../usernotificaciones/entities/usernotificaciones.entity';
 
 @Entity('users')
 export class Users {
@@ -18,6 +21,18 @@ export class Users {
     onUpdate: 'CASCADE',
   })
   @OneToMany(() => Uservideo, (userVideo) => userVideo.id, {
+    onDelete: 'CASCADE',
+    onUpdate: 'CASCADE',
+  })
+  @OneToMany(() => Userpregunta, (userpregunta) => userpregunta.id, {
+    onDelete: 'CASCADE',
+    onUpdate: 'CASCADE',
+  })
+  @OneToMany(() => Userselectreto, (userselectreto) => userselectreto.id, {
+    onDelete: 'CASCADE',
+    onUpdate: 'CASCADE',
+  })
+  @OneToMany(() => Usernotificaciones, (usernotificacion) => usernotificacion.id, {
     onDelete: 'CASCADE',
     onUpdate: 'CASCADE',
   })

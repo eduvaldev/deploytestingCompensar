@@ -3,20 +3,37 @@ import { Repository } from 'typeorm';
 import { InjectRepository } from '@nestjs/typeorm';
 import { Users } from './entities/users.entity';
 import { CreateUserDto } from './dto/login.dto';
+import {getConnection} from "typeorm";
 
 @Injectable()
 export class UsersService {
   constructor(
     @InjectRepository(Users)
-    private readonly userRepository: Repository<Users>,
+    private userRepository: Repository<Users>,
   ) {}
 
-  async createUser(user: CreateUserDto) {
+  async findAllUser (){
+    const result = await this.userRepository.find();
+    return result;
+  }
+
+  /* async createUser(user: CreateUserDto) {
     const document = await this.findByUser(user);
     if (document) return document;
     const obj: any = user;
-    const result = this.userRepository.create(obj);
+    const result = await this.userRepository.create(obj);
+    console.log(result);
     return await this.userRepository.save(result);
+  } */
+
+  async createUser(user: CreateUserDto) {
+    const obj: any = user;
+    await getConnection()
+        .createQueryBuilder()
+        .insert()
+        .into(Users)
+        .values([obj])
+        .execute();
   }
 
   async findByUser(user: CreateUserDto) {

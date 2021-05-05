@@ -7,6 +7,9 @@ import { RolsModule } from './rols/rols.module';
 import { StatesModule } from './states/states.module';
 import { UservideosModule } from './uservideos/uservideos.module';
 import { VideosModule } from './videos/videos.module';
+import { PreguntasModule } from './Preguntas/preguntas.module';
+import { NotificacionesModule } from './notificaciones/notificaciones.module';
+import { RetoModule } from './Reto/reto.module';
 
 @Module({
   imports: [
@@ -16,6 +19,9 @@ import { VideosModule } from './videos/videos.module';
     StatesModule,
     UservideosModule,
     VideosModule,
+    PreguntasModule,
+    NotificacionesModule,
+    RetoModule,
   ],
   controllers: [DbController],
   providers: [DbService],

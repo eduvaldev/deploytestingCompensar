@@ -9,6 +9,32 @@ export class ApiVideosService {
     private readonly videosService: VideosService,
   ) {}
 
+  async finAllAdmin() {
+    const data = await this.videosService.findAllVideos();
+    const result = {
+      data: {
+        data: data,
+      },
+      code: 200,
+    };
+    return result;
+  }
+
+  async findOneAdmin(id: number) {
+    return this.videosService.findOne(id)
+  }
+
+  async updateVideoId(id: number, body){
+    const data = await this.videosService.updateVideoId(id, body);
+    const result = {
+      data: {
+        data: data,
+      },
+      code: 200,
+    };
+    return result; 
+  }
+
   async findAll(id: number, type: string) {
     const user = await this.userName.findUser(id);
     let allVideos; 

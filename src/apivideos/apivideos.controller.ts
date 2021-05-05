@@ -1,10 +1,34 @@
-import { Controller, Get, Param, UseGuards, Request, Query } from '@nestjs/common';
+import { 
+  Controller, 
+  Get, 
+  Body,
+  Param, 
+  UseGuards, 
+  Request, 
+  Query, 
+  Post 
+} from '@nestjs/common';
 import { ApiVideosService } from './apivideos.service';
 import { JwtAuthGuard } from '../auth/jwt-auth.guard';
 
 @Controller('api/videos')
 export class ApiVideosController {
   constructor(private readonly videosService: ApiVideosService) {}
+
+  @Get('/admin')
+  findAlllAdmin(){
+    return this.videosService.finAllAdmin();
+  }
+
+  @Get('/admin/:video')
+  findOneAdmin(@Param('video') id: number){
+    return this.videosService.findOneAdmin(id);
+  }
+  
+  @Post('/admin/:id')
+  updateOneAdmin(@Body() data, @Param('id') id ){
+    return this.videosService.updateVideoId(id, data);
+  }
 
   @UseGuards(new JwtAuthGuard())
   @Get()

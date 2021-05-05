@@ -1,5 +1,5 @@
 import { Injectable } from '@nestjs/common';
-import { Repository } from 'typeorm';
+import { Repository, getRepository, getConnection } from 'typeorm';
 import { InjectRepository } from '@nestjs/typeorm';
 import { Video } from './entities/videos.entity';
 import { UsersService } from '../users/users.service';
@@ -123,6 +123,29 @@ export class VideosService {
       },
       code: 200,
     };
+    return result;
+  }
+
+  /* async updateVideoId(id, body){
+    console.log(body);
+    const videoId = await getRepository(Video).findOne(id);
+    console.log(videoId);
+    if (videoId) {
+      getRepository(Video).merge(videoId, body);
+      const result = await getRepository(Video).save(videoId);
+      console.log(result);
+      return result;
+    }
+    return {msg: 'Video no encontrado'};
+  } */
+
+  async updateVideoId(id, body){
+    const result = await getConnection()
+                        .createQueryBuilder()
+                        .update(Video)
+                        .set({url: body.url})
+                        .where("id = :id", { id})
+                        .execute();
     return result;
   }
 }

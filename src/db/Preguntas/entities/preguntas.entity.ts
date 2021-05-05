@@ -2,21 +2,23 @@ import {
   Column,
   Entity,
   OneToMany,
-  ManyToOne,
   PrimaryGeneratedColumn,
   JoinColumn,
 } from 'typeorm';
+import { Userpregunta } from '../../userpregunta/entities/userpregunta.entity';
 
-@Entity('preguntas')
+@Entity('pregunta')
 export class Pregunta {
+  @OneToMany(() => Userpregunta, (userpregunta) => userpregunta.id, {
+    onDelete: 'CASCADE',
+    onUpdate: 'CASCADE',
+  })
+  @JoinColumn()
   @PrimaryGeneratedColumn()
   id: number;
 
   @Column({ type: 'text', nullable: true })
   pregunta: string;
-
-  @Column({ type: 'text', nullable: true })
-  respuesta: string;
 
   @Column({ type: 'text', nullable: true })
   textoHelp: string;
@@ -26,7 +28,4 @@ export class Pregunta {
 
   @Column({ type: 'text', nullable: false })
   type: string;
-
-  @Column({ type: 'float', nullable: false })
-  progress: number;
 }
