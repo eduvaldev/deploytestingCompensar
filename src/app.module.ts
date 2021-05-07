@@ -8,6 +8,7 @@ import { TYPEORM_CONFIG } from './config/constants';
 import * as Joi from '@hapi/joi';
 import { ConfigModule, ConfigService } from '@nestjs/config';
 import { TypeOrmModule, TypeOrmModuleOptions } from '@nestjs/typeorm';
+import { ApiOutModule } from './apiOut/apiOut.module';
 import { ApivideosModule } from './apivideos/apivideos.module';
 import { ApilikeuserModule } from './apilikeuser/apilikeuser.module';
 import { ApiuservideoModule } from './apiuservideo/apiuservideo.module';
@@ -38,6 +39,7 @@ import configSecret from './config/config';
           .default('development'),
       }),
     }),
+    ApiOutModule,
     UsersModule,
     LoginModule,
     AuthModule,
