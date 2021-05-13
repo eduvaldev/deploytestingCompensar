@@ -45,6 +45,7 @@ export class UsersService {
           password: user.password,
         },
       ],
+      relations: ['rol_id'],
     });
     return result;
   }

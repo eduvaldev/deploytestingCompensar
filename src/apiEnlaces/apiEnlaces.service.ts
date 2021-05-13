@@ -7,6 +7,17 @@ export class apiEnlacesService {
     private enlacesService: EnlacesService,
   ) {}
 
+  async findAllType(type: string){
+    let data = await this.enlacesService.findAllType(type);
+    const result = {
+      data: {
+        data: data,
+      },
+      code: 200,
+    };
+    return result;
+  }
+
   async findAll(){
     const data = await this.enlacesService.findAll();
     const result = {

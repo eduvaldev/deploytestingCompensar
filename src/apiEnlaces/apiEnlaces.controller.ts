@@ -17,18 +17,23 @@ export class EnlacesController {
     private readonly ApiEnlacesService: apiEnlacesService,
   ) {}
 
+  @Get('/part')
+  findAll(@Request() req, @Query() query) {
+      return this.ApiEnlacesService.findAllType(query.type);
+  }
+
   @Get()
-  getAllTextos(){
+  getAllEnlaces(){
     return this.ApiEnlacesService.findAll();
   }
 
   @Get(':id')
-  getTextoId(@Param('id') id){
+  getEnlaceId(@Param('id') id){
     return this.ApiEnlacesService.findOneId(id);
   }
 
   @Post(':id')
-  updateTextoId(@Body() data, @Param('id') id ){
+  updateEnlaceId(@Body() data, @Param('id') id ){
     return this.ApiEnlacesService.updateEnlacestId(id, data);
   }
 }

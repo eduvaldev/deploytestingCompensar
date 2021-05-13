@@ -27,6 +27,7 @@ export class ApiVideosController {
   
   @Post('/admin/:id')
   updateOneAdmin(@Body() data, @Param('id') id ){
+    console.log(data);
     return this.videosService.updateVideoId(id, data);
   }
 

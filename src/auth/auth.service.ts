@@ -28,6 +28,7 @@ export class AuthService {
     if (!result) {
       throw new UnauthorizedException();
     }
+
     const payload = {
       user: result.identification_number,
       username: result.identification_number,
@@ -35,6 +36,36 @@ export class AuthService {
       document_type: result.document_type,
       sub: result.id,
     };
+
+    return {
+      id: result.id,
+      documento: result.document_type,
+      user: result.identification_number,
+      access_token: this.jwtService.sign(payload),
+      token_type: 'bearer',
+      expires_in: 99999999,
+    };
+  }
+
+  async payloadAdmin(user: CreateUserDto) {
+    const result = await this.validateUser(user);
+    console.log(result);
+    if (!result) {
+      throw new UnauthorizedException();
+    }
+
+    if(result.rol_id.id !== 2){
+      throw new UnauthorizedException();
+    }
+
+    const payload = {
+      user: result.identification_number,
+      username: result.identification_number,
+      created_at: result.created_at,
+      document_type: result.document_type,
+      sub: result.id,
+    };
+    
     return {
       id: result.id,
       documento: result.document_type,

@@ -146,6 +146,11 @@ export class VideosService {
                         .set({url: body.url})
                         .where("id = :id", { id})
                         .execute();
-    return result;
+    
+    const video = await getRepository(Video).findOne(id);
+    if(result){
+      return video;
+    }
+    return {msg: 'Video no encontrado'}
   }
 }

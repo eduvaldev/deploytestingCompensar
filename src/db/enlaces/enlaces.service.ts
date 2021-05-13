@@ -19,6 +19,11 @@ export class EnlacesService {
     return result;
   }
 
+  async findAllType(type: string){
+    const data = await this.enlacesRepository.find({ where: { type: type } });
+    return data;
+  }
+
   async findOneId(id) {
     const result = await this.enlacesRepository.findOne({
       where: [
